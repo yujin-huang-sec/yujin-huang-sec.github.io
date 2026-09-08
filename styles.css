@@ -469,6 +469,49 @@ h3 {
 }
 
 /* One bullet per entry, shared by Awards, Teaching and Service. */
+/* News beyond the fifth entry collapses behind a toggle. Both rules are
+   positional (:nth-child / :has), so adding a news item needs no extra
+   markup -- and the link only appears once there is a sixth to reveal. */
+.more-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#news-toggle:not(:checked) ~ .news-list .news-item:nth-child(n + 6) {
+  display: none;
+}
+
+.more-link {
+  display: none;
+  margin-top: 11px;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.news-list:has(.news-item:nth-child(6)) ~ .more-link {
+  display: inline-block;
+}
+
+.more-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.more-hide {
+  display: none;
+}
+
+#news-toggle:checked ~ .more-link .more-show {
+  display: none;
+}
+
+#news-toggle:checked ~ .more-link .more-hide {
+  display: inline;
+}
+
 .news-list,
 .award-list,
 .teaching-list,
