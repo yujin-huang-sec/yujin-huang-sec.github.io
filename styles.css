@@ -484,7 +484,7 @@ h3 {
 
 .more-link {
   display: none;
-  margin-top: 11px;
+  margin-top: 4px;
   color: var(--accent);
   cursor: pointer;
   font-size: 0.95rem;
