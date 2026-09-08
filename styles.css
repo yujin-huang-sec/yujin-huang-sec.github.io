@@ -1,0 +1,580 @@
+:root {
+  /* Palette sampled from the portrait, weighted toward its darkest values:
+     the near-black navy of the garment carries the accent, the cool slate
+     backdrop sets the neutrals, skin midtones give the one warm highlight. */
+  /* Body copy is black throughout; --muted is kept as a hook in case a
+     secondary tone is wanted again, but currently matches --text. */
+  --accent: #1a6dd4;
+  /* The publication badge keeps the original navy; it is deliberately not
+     tied to --accent, so link colour can change without moving it. */
+  --badge: #1b4176;
+  --accent-strong: #0a2342;
+  --highlight: #b39468;
+  --ink: #0e1219;
+  --text: #0e1219;
+  --muted: #0e1219;
+  --line: #d3d9e2;
+  --soft: #ebeff4;
+  --background: #ffffff;
+  --font: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.58;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.site-header,
+.page,
+.site-footer {
+  width: min(940px, calc(100% - 44px));
+  margin: 0 auto;
+}
+
+/* The bands exist only so the rules run edge to edge on wide screens;
+   the weight comes from the type, not from a slab of colour. */
+.header-band {
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0 16px;
+}
+
+/* The name doubles as the About/home link, which is why there is no
+   separate About item in the nav. */
+.site-title {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.008em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-title:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Barbell mark beside the name. Inherits currentColor so it turns blue with
+   the name on hover; decorative, so it is hidden from screen readers. */
+.site-title-icon {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  margin-left: 7px;
+  fill: currentColor;
+  vertical-align: -0.28em;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px 18px;
+  font-size: 0.92rem;
+}
+
+.site-nav a {
+  color: var(--muted);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--accent);
+}
+
+/* Identity header: round portrait beside name, role and links, with the
+   content running full width beneath it. */
+.identity {
+  display: grid;
+  grid-template-columns: 178px minmax(0, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  padding: 44px 0 6px;
+}
+
+/* Square, matching the source photo's own aspect ratio, so nothing is cropped
+   away -- only a small radius to match the cards and badges. */
+.portrait-frame {
+  width: 178px;
+  height: 178px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: var(--soft);
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The body stretches to the portrait's height and the icon row is pushed to
+   the bottom, so the top of the name and the bottom of the icons both sit
+   level with the photo's edges. */
+.identity-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 2.4rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.section-spacer {
+  display: block;
+}
+
+h3 {
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+/* The whole bio is the page's lead: both paragraphs sit above body size so
+   "who I am" carries weight against the section headings further down. */
+#about .section-content > p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  font-weight: 450;
+  line-height: 1.6;
+}
+
+.intro p:last-child,
+.section-content p:last-child {
+  margin-bottom: 0;
+}
+
+.role {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Profile icons: Scholar / LinkedIn / GitHub as square outline buttons.
+   SVGs are inlined so nothing is fetched from a CDN. */
+.icon-links {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.icon-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+.icon-links a:hover {
+  border-color: var(--accent);
+  background: var(--soft);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.icon-links svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+.section {
+  display: block;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* No divider under whatever ends the page. */
+.page > .section:last-of-type {
+  border-bottom: 0;
+}
+
+/* First section in the column: no top padding, so the opening line of text
+   sits level with the top of the portrait in the sidebar. */
+#about {
+  padding-top: 26px;
+}
+
+.section-content {
+  max-width: none;
+}
+
+/* Section headings need a clear step above the h3 paper/award titles they
+   contain; the base h2 size is left alone for the narrow News sidebar. */
+.section h2 {
+  margin-bottom: 11px;
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+}
+
+/* Three tinted direction cards. Each carries its own hue so the set reads as
+   distinct strands of one programme rather than three identical boxes. */
+.topic-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.topic {
+  padding: 13px 13px 15px;
+  border-radius: 6px;
+}
+
+.topic h3 {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.014em;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.topic-icon {
+  margin-right: 5px;
+  font-size: 0.88em;
+  font-style: normal;
+}
+
+.topic p {
+  margin: 0;
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Tints normalised to one lightness (96.4%) and headings to one perceived
+   weight, so the three read as a matched set. Teal sits lower in lightness
+   than the other two because it is perceptually brighter at equal L. */
+.topic-mobile {
+  background: #fdefef;
+}
+
+.topic-mobile h3 {
+  color: #a03b45;
+}
+
+.topic-genai {
+  background: #eff4fd;
+}
+
+.topic-genai h3 {
+  color: #1a60c1;
+}
+
+.topic-embodied {
+  background: #f0fafc;
+}
+
+.topic-embodied h3 {
+  color: #157584;
+}
+
+/* Sits between the direction cards and the recruiting note. */
+.impact {
+  margin-top: 16px;
+}
+
+/* Recruiting note, in the site's own tokens: --soft for the panel and the
+   badge navy for the rule and lead. --soft is a neutral cool grey, so unlike a
+   blue tint it does not echo any of the three research cards. */
+.recruiting {
+  margin-top: 20px;
+  padding: 13px 17px 14px;
+  border-left: 4px solid var(--badge);
+  border-radius: 0 5px 5px 0;
+  background: var(--soft);
+}
+
+/* Matches the About paragraphs exactly (1.05rem / 450 / 1.6) so the box reads
+   as part of that section's prose rather than a smaller aside. */
+.recruiting p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 450;
+  line-height: 1.6;
+}
+
+.recruiting strong {
+  color: var(--badge);
+  font-weight: 700;
+}
+
+/* Numbered entries: venue badge inline with the title, full venue in italics
+   beneath it, own name underlined in the author line. */
+.publication-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pub;
+}
+
+.paper {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  column-gap: 6px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  counter-increment: pub;
+}
+
+.paper::before {
+  content: counter(pub) ".";
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+}
+
+.paper > * {
+  grid-column: 2;
+}
+
+.paper:last-child {
+  border-bottom: 0;
+}
+
+.paper-head {
+  margin-bottom: 3px;
+  font-size: 0.95rem;
+  line-height: 1.42;
+}
+
+/* The venue badge is what people scan for, so it gets the accent and a
+   surface of its own: filled navy, deliberately not tied to --accent so link
+   colour can change without moving it. nowrap keeps it on one line. */
+.paper-tag {
+  display: inline-block;
+  margin-right: 9px;
+  padding: 1px 8px 2px;
+  border-radius: 3px;
+  background: var(--badge);
+  color: #ffffff;
+  font-size: 0.73rem;
+  font-weight: 650;
+  letter-spacing: 0.012em;
+  line-height: 1.45;
+  vertical-align: 0.1em;
+  white-space: nowrap;
+}
+
+.paper p {
+  margin-bottom: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.paper p.paper-venue {
+  font-style: italic;
+}
+
+.paper .authors strong {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgba(14, 18, 25, 0.45);
+}
+
+/* `.paper p` (0,1,1) outranks a bare `.paper-award`, so qualify it. */
+.paper p.paper-award {
+  margin-top: 4px;
+  color: #8a6b3d;
+  font-weight: 600;
+}
+
+/* Sub-heading inside Service, above each group of entries. */
+.service-group {
+  margin: 0 0 7px;
+  font-size: 0.97rem;
+  font-weight: 650;
+}
+
+.service-list + .service-group {
+  margin-top: 16px;
+}
+
+/* One bullet per entry, shared by Awards, Teaching and Service. */
+.news-list,
+.award-list,
+.teaching-list,
+.service-list {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.news-item,
+.award,
+.teaching-item,
+.service-item {
+  margin-bottom: 7px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.news-item:last-child,
+.award:last-child,
+.teaching-item:last-child,
+.service-item:last-child {
+  margin-bottom: 0;
+}
+
+.news-item time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.footer-band {
+  margin-top: 14px;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 14px 0 24px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .identity {
+    grid-template-columns: 124px minmax(0, 1fr);
+    gap: 20px;
+    padding-top: 34px;
+  }
+
+  .portrait-frame {
+    width: 124px;
+    height: 124px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+  }
+
+  .topic-list {
+    grid-template-columns: 1fr;
+  }
+
+  .paper {
+    grid-template-columns: 26px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header,
+  .page,
+  .site-footer {
+    width: min(100% - 28px, 1040px);
+  }
+
+  body {
+    font-size: 15.8px;
+  }
+
+  .paper {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .award {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .site-footer {
+    display: block;
+  }
+
+  .site-footer p + p {
+    margin-top: 4px;
+  }
+}
