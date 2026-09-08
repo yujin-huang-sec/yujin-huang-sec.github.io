@@ -478,7 +478,7 @@ h3 {
   pointer-events: none;
 }
 
-#news-toggle:not(:checked) ~ .news-list .news-item:nth-child(n + 6) {
+#news-toggle:not(:checked) ~ .news-list .news-item:nth-child(n + 5) {
   display: none;
 }
 
@@ -488,16 +488,17 @@ h3 {
   color: var(--accent);
   cursor: pointer;
   font-size: 0.95rem;
-  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
-.news-list:has(.news-item:nth-child(6)) ~ .more-link {
+.news-list:has(.news-item:nth-child(5)) ~ .more-link {
   display: inline-block;
 }
 
 .more-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  color: var(--accent-strong);
 }
 
 .more-hide {
