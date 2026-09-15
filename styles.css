@@ -450,6 +450,14 @@ h3 {
   text-decoration-color: rgba(14, 18, 25, 0.45);
 }
 
+/* Citation/award notes on a publication. `.paper p` (0,1,1) outranks a bare
+   class selector, so both are qualified. */
+.paper p.paper-note {
+  margin-top: 3px;
+  color: #c62828;
+  font-weight: 650;
+}
+
 /* `.paper p` (0,1,1) outranks a bare `.paper-award`, so qualify it. */
 .paper p.paper-award {
   margin-top: 4px;
