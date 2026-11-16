@@ -5,7 +5,7 @@ A lightweight static academic homepage, served by GitHub Pages.
 ## Structure
 
 - `index.html` - the whole page: profile, about, news, publications, awards, teaching, service
-- `styles.css` - all styling; the palette lives in the `:root` custom properties at the top
+- `styles.css` - all styling; the palette lives in the `:root` custom properties at the top. After changing it, bump the `?v=` date on the stylesheet link in `index.html` so browsers fetch the new file instead of a cached copy
 - `assets/` - portrait and paper PDFs
 
 ## Design
