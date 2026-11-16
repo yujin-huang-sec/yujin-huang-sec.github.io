@@ -226,7 +226,8 @@ h3 {
   margin-top: auto;
 }
 
-.icon-links a {
+.icon-links > a,
+.pronounce-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -237,7 +238,18 @@ h3 {
   color: var(--text);
 }
 
-.icon-links a:hover {
+/* The speaker icon is a button (it pins the pronunciation note), so it drops
+   the browser's button chrome to match the link icons. */
+.pronounce-btn {
+  padding: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.icon-links > a:hover,
+.pronounce-btn:hover,
+.pronounce.is-open .pronounce-btn {
   border-color: var(--accent);
   background: var(--soft);
   color: var(--accent);
@@ -251,24 +263,23 @@ h3 {
   fill: currentColor;
 }
 
-/* Pronunciation note: shown beside the speaker icon on hover or focus. It
+/* Pronunciation note: shown beside the speaker icon on hover, and pinned
+   open by clicking the icon so the "Yoo-jin" link inside it can be used. It
    reuses the icon buttons' own shape (34px tall, 1px --line border, 4px
-   corners) on the --soft panel, flat like the rest of the page, and sets the
-   pronunciation in badge navy, the same emphasis as the recruiting note. */
+   corners) on the --soft panel, flat like the rest of the page. */
 .icon-links {
   position: relative;
 }
 
 .pronounce {
   position: relative;
+  display: flex;
 }
 
 .pronounce-tip {
   position: absolute;
-  /* Offsets are from inside the button's 1px border: -1px lines the tops up,
-     and 11px leaves the same 10px gap as between the icons. */
-  top: -1px;
-  left: calc(100% + 11px);
+  top: 0;
+  left: calc(100% + 10px);
   z-index: 10;
   height: 34px;
   padding: 0 12px;
@@ -284,18 +295,28 @@ h3 {
   visibility: hidden;
   transform: translateX(-4px);
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
-  pointer-events: none;
 }
 
-.pronounce-tip em {
-  color: var(--badge);
-  font-style: normal;
+/* Bridges the gap to the icon, so the pointer can travel from the icon to
+   the link without the note closing on the way. */
+.pronounce-tip::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -12px;
+  width: 12px;
+}
+
+.pronounce-tip a {
   font-weight: 600;
   white-space: nowrap;
 }
 
 .pronounce:hover .pronounce-tip,
-.pronounce:focus-visible .pronounce-tip {
+.pronounce.is-open .pronounce-tip,
+.pronounce-btn:focus-visible + .pronounce-tip,
+.pronounce-tip:focus-within {
   opacity: 1;
   visibility: visible;
   transform: none;
@@ -320,6 +341,15 @@ h3 {
     line-height: 1.45;
     white-space: normal;
     transform: translateY(-2px);
+  }
+
+  .pronounce-tip::before {
+    top: -10px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 10px;
   }
 }
 
@@ -651,7 +681,8 @@ h3 {
     gap: 8px;
   }
 
-  .icon-links a {
+  .icon-links > a,
+  .pronounce-btn {
     width: 32px;
     height: 32px;
   }
