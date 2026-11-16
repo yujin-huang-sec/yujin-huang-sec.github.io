@@ -251,6 +251,48 @@ h3 {
   fill: currentColor;
 }
 
+/* Pronunciation note: shown under the icon row when the speaker icon is
+   hovered or focused. It is positioned against the row, not the icon, so it
+   starts flush with the first icon and stays inside the column on phones. */
+.icon-links {
+  position: relative;
+}
+
+.pronounce-tip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 10;
+  width: max-content;
+  max-width: min(440px, calc(100vw - 32px));
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--soft);
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  box-shadow: 0 2px 8px rgba(14, 18, 25, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-2px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  pointer-events: none;
+}
+
+.pronounce-tip em {
+  color: var(--highlight);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.pronounce:hover .pronounce-tip,
+.pronounce:focus-visible .pronounce-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 .section {
   display: block;
   padding: 18px 0;
@@ -572,6 +614,24 @@ h3 {
     grid-template-columns: 124px minmax(0, 1fr);
     gap: 20px;
     padding-top: 34px;
+  }
+
+  /* Five icons have to fit the narrow column beside the portrait. */
+  .icon-links {
+    gap: 8px;
+  }
+
+  .icon-links a {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Hang the note from the row's right edge so it spreads left, under the
+     portrait, instead of running off the screen. */
+  .pronounce-tip {
+    left: auto;
+    right: 0;
+    max-width: calc(100vw - 28px);
   }
 
   .portrait-frame {
