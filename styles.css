@@ -263,8 +263,8 @@ h3 {
   fill: currentColor;
 }
 
-/* Pronunciation note: shown beside the speaker icon on hover, and pinned
-   open by clicking the icon so the "Yoo-jin" link inside it can be used. It
+/* Pronunciation note: opened and closed by clicking the speaker icon (not on
+   hover), so the "Yoo-jin" link inside it can be used. It
    reuses the icon buttons' own shape (34px tall, 1px --line border, 4px
    corners) on the --soft panel, flat like the rest of the page. */
 .icon-links {
@@ -297,26 +297,12 @@ h3 {
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
 }
 
-/* Bridges the gap to the icon, so the pointer can travel from the icon to
-   the link without the note closing on the way. */
-.pronounce-tip::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  bottom: -1px;
-  left: -12px;
-  width: 12px;
-}
-
 .pronounce-tip a {
   font-weight: 600;
   white-space: nowrap;
 }
 
-.pronounce:hover .pronounce-tip,
-.pronounce.is-open .pronounce-tip,
-.pronounce-btn:focus-visible + .pronounce-tip,
-.pronounce-tip:focus-within {
+.pronounce.is-open .pronounce-tip {
   opacity: 1;
   visibility: visible;
   transform: none;
@@ -341,15 +327,6 @@ h3 {
     line-height: 1.45;
     white-space: normal;
     transform: translateY(-2px);
-  }
-
-  .pronounce-tip::before {
-    top: -10px;
-    left: 0;
-    right: 0;
-    bottom: auto;
-    width: auto;
-    height: 10px;
   }
 }
 
