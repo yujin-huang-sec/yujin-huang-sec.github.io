@@ -362,11 +362,9 @@ h3 {
 
 /* Three tinted direction cards. Each carries its own hue so the set reads as
    distinct strands of one programme rather than three identical boxes. */
-/* The middle card is a little wider so "Post-Deployment Model Safety &
-   Security" fits on one line at full page width, like the other two titles. */
 .topic-list {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin-top: 14px;
 }
@@ -376,9 +374,11 @@ h3 {
   border-radius: 6px;
 }
 
+/* 0.84rem lets the longest title, "Post-Deployment Model Safety & Security",
+   sit on one line in an equal-width card at full page width. */
 .topic h3 {
   margin-bottom: 6px;
-  font-size: 0.95rem;
+  font-size: 0.84rem;
   font-weight: 700;
   letter-spacing: -0.014em;
   line-height: 1.35;
@@ -395,6 +395,10 @@ h3 {
   font-size: 0.88rem;
   font-style: italic;
   line-height: 1.5;
+  text-align: justify;
+  /* Narrow justified columns stretch word gaps; hyphenation evens them out. */
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 /* Tints normalised to one lightness (96.4%) and headings to one perceived
