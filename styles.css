@@ -362,9 +362,11 @@ h3 {
 
 /* Three tinted direction cards. Each carries its own hue so the set reads as
    distinct strands of one programme rather than three identical boxes. */
+/* The middle card is a little wider so "Post-Deployment Model Safety &
+   Security" fits on one line at full page width, like the other two titles. */
 .topic-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
   gap: 12px;
   margin-top: 14px;
 }
