@@ -393,6 +393,10 @@ h3 {
   font-size: 0.88rem;
   font-style: italic;
   line-height: 1.5;
+  text-align: justify;
+  /* Narrow justified columns stretch word gaps; hyphenation evens them out. */
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 /* Tints normalised to one lightness (96.4%) and headings to one perceived
